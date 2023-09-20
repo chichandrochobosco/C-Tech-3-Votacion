@@ -38,11 +38,12 @@ public class DaoVotacion {
                 votaciones.add(new Votacion(idLista,rs.getInt("ano"),rs.getString("descripcion"),getLista(idLista),rs.getInt("activa")));
             }
 
+        rs.close();
+        cs.close();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
         return votaciones;
     }
 
@@ -68,7 +69,8 @@ public class DaoVotacion {
                 lista.setRepresentantes(getRepresentantes(lista.getIdLista()));
                 System.out.println(lista.getIdLista());
             }
-
+        rs.close();
+        cs.close();
             return listas;
 
         }catch (SQLException e){

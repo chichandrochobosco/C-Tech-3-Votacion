@@ -4,6 +4,14 @@
  */
 package c.tech.pkg3.votacion.vistas;
 
+import Encriptador.EncriptadorContraseña;
+import c.tech.pkg3.votacion.Persona;
+import c.tech.pkg3.votacion.Rol;
+import c.tech.pkg3.votacion.dao.DaoPersona;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ET36
@@ -39,6 +47,8 @@ public class añadirUsuario extends javax.swing.JFrame {
         campotelefono = new javax.swing.JTextField();
         campocontraseña = new javax.swing.JTextField();
         botoncrearusuario = new javax.swing.JButton();
+        RolComboBox = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,25 +64,18 @@ public class añadirUsuario extends javax.swing.JFrame {
 
         etiquetacontraseña.setText("Contraseña");
 
-        camponombre.setText("Ingrese nombre");
-
-        campoapellido.setText("Ingrese apellido");
         campoapellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoapellidoActionPerformed(evt);
             }
         });
 
-        campodni.setText("Ingrese dni");
-
-        campotelefono.setText("Ingrese telefono");
         campotelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campotelefonoActionPerformed(evt);
             }
         });
 
-        campocontraseña.setText("Ingrese contraseña");
         campocontraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campocontraseñaActionPerformed(evt);
@@ -80,32 +83,53 @@ public class añadirUsuario extends javax.swing.JFrame {
         });
 
         botoncrearusuario.setText("Crear usuario");
+        botoncrearusuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botoncrearusuarioActionPerformed(evt);
+            }
+        });
+
+        RolComboBox.setModel(new javax.swing.DefaultComboBoxModel<String>(new String[]{"ADMIN","PERSONA"}));
+
+        jLabel1.setText("Rol");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(272, 272, 272)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botoncrearusuario)
+                    .addComponent(etiquetaañadirusuario))
+                .addContainerGap(228, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(98, 98, 98)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(etiquetaapellido)
-                            .addComponent(etiquetanombre)
-                            .addComponent(etiquetadni)
-                            .addComponent(etiquetatelefono)
-                            .addComponent(etiquetacontraseña)
-                            .addComponent(campocontraseña)
-                            .addComponent(campotelefono)
-                            .addComponent(campodni)
-                            .addComponent(campoapellido)
-                            .addComponent(camponombre)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(272, 272, 272)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botoncrearusuario)
-                            .addComponent(etiquetaañadirusuario))))
-                .addContainerGap(228, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etiquetaapellido)
+                                    .addComponent(etiquetanombre)
+                                    .addComponent(etiquetadni)
+                                    .addComponent(etiquetatelefono)
+                                    .addComponent(etiquetacontraseña))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(camponombre)
+                                .addGap(92, 92, 92)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(RolComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(87, 87, 87))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(campocontraseña, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                            .addComponent(campotelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campodni, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(campoapellido, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,9 +137,13 @@ public class añadirUsuario extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addComponent(etiquetaañadirusuario, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(etiquetanombre)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetanombre)
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(camponombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(camponombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(RolComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(etiquetaapellido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -163,6 +191,42 @@ public class añadirUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_campotelefonoActionPerformed
 
+    private void botoncrearusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncrearusuarioActionPerformed
+        obtenerPersonaInterfaz();
+    }//GEN-LAST:event_botoncrearusuarioActionPerformed
+
+    private void obtenerPersonaInterfaz() {
+        String nombre = camponombre.getText();
+        String apellido = campoapellido.getText();
+        String contraseña = campocontraseña.getText();
+        Rol rol = Rol.valueOf(String.valueOf(RolComboBox.getSelectedItem()));
+        if (nombre.equalsIgnoreCase("") || apellido.equalsIgnoreCase("") || contraseña.equals("") || campotelefono.getText().equalsIgnoreCase("") || campodni.getText().equalsIgnoreCase("") || String.valueOf(RolComboBox.getSelectedItem()).equals("")) {
+            JOptionPane.showMessageDialog(null, "Ingrese los Datos de manera Correcta");
+            return;
+        }
+        int telefono = Integer.parseInt(campotelefono.getText());
+        int dni = Integer.parseInt(campodni.getText());
+
+        DaoPersona dao = new DaoPersona();
+        Persona persona = dao.obtenerPersona(dni);
+        if (persona != null) {
+            JOptionPane.showMessageDialog(null, "YA ESTA REGISTRADO");
+            return;
+        }
+        String contraseñaHash = new EncriptadorContraseña().encriptarContraseña(contraseña);
+        dao.ingresarPersona(new Persona(dni, nombre, apellido, telefono, contraseñaHash, rol));
+        JOptionPane.showMessageDialog(null, "persona ingresada correctamente");
+        limpiarCampos();
+    }
+
+    private void limpiarCampos() {
+        camponombre.setText("");
+        campoapellido.setText("");
+        campocontraseña.setText("");
+        campotelefono.setText("");
+        campodni.setText("");
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -200,6 +264,7 @@ public class añadirUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> RolComboBox;
     private javax.swing.JButton botoncrearusuario;
     private javax.swing.JTextField campoapellido;
     private javax.swing.JTextField campocontraseña;
@@ -212,6 +277,7 @@ public class añadirUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel etiquetadni;
     private javax.swing.JLabel etiquetanombre;
     private javax.swing.JLabel etiquetatelefono;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

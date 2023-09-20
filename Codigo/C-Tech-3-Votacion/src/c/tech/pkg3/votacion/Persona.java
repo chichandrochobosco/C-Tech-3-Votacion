@@ -15,15 +15,23 @@ public class Persona {
     private String apellido;
     private int telefono;
     private String contraseña;
+    private Rol rol;
 
-    public Persona(int dni, String nombre, String apellido, int telefono, String contraseña) {
+    public Persona(int dni, String nombre, String apellido, int telefono, String contraseña,Rol rol) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.contraseña = contraseña;
+        this.rol = rol;
     }
 
+    public Rol getRol() {
+        return rol;
+    }
+
+    
+    
     public int getDni() {
         return dni;
     }
