@@ -60,7 +60,7 @@ public class AñadirVotacion extends javax.swing.JFrame {
 
         camponombrevotacion.setText("Ingresar nombre de la votacion");
 
-        botoncargarnombrevotacion.setText("Cargar nombre dela votacion");
+        botoncargarnombrevotacion.setText("Cargar nombre de la votacion");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -83,7 +83,7 @@ public class AñadirVotacion extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(camponombrevotacion, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
                 .addComponent(botoncargarnombrevotacion)
                 .addGap(43, 43, 43))
         );

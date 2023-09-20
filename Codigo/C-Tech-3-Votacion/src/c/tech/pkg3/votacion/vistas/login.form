@@ -60,6 +60,11 @@
                   </Group>
                   <EmptySpace pref="229" max="32767" attributes="0"/>
               </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="269" max="32767" attributes="0"/>
+                  <Component id="BotonIngresar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -75,7 +80,9 @@
                   <Component id="etiquetacontraseña" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="campocontraseña" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="186" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                  <Component id="BotonIngresar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="93" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -107,6 +114,11 @@
         <Component class="javax.swing.JLabel" name="etiquetalogin">
           <Properties>
             <Property name="text" type="java.lang.String" value="Log In"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="BotonIngresar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ingresar"/>
           </Properties>
         </Component>
       </SubComponents>

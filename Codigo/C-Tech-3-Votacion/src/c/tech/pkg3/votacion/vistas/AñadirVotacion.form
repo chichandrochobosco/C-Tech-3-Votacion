@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -60,7 +60,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="camponombrevotacion" min="-2" pref="217" max="-2" attributes="0"/>
-                  <EmptySpace pref="122" max="32767" attributes="0"/>
+                  <EmptySpace pref="119" max="32767" attributes="0"/>
                   <Component id="botoncargarnombrevotacion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
@@ -154,7 +154,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="botoncargarnombrevotacion">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Cargar nombre dela votacion"/>
+            <Property name="text" type="java.lang.String" value="Cargar nombre de la votacion"/>
           </Properties>
         </Component>
       </SubComponents>

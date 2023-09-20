@@ -4,17 +4,20 @@
  */
 package c.tech.pkg3.votacion;
 
+import c.tech.pkg3.votacion.dao.DaoVotacion;
+
 /**
  *
  * @author ET36
  */
 public class CTech3Votacion {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        DaoVotacion daoVotacion = new DaoVotacion();
+        for (Votacion v : daoVotacion.obtenerVotaciones()){
+            System.out.println(v.toString());
+        }
+
     }
     
 }
