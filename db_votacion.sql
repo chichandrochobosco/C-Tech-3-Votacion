@@ -1,8 +1,8 @@
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
--- Host: localhost    Database: db_votacion
+-- Host: 127.0.0.1    Database: db_votacion
 -- ------------------------------------------------------
--- Server version	8.0.26
+-- Server version	8.0.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -26,7 +26,7 @@ CREATE TABLE `lista` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +35,7 @@ CREATE TABLE `lista` (
 
 LOCK TABLES `lista` WRITE;
 /*!40000 ALTER TABLE `lista` DISABLE KEYS */;
-INSERT INTO `lista` VALUES (1,'Frente de Izquierda'),(2,'Peronismo'),(3,'liberalismo');
+INSERT INTO `lista` VALUES (1,'Frente de Izquierda'),(2,'Peronismo'),(3,'liberalismo'),(6,'Union Civica'),(7,'Estado Activo');
 /*!40000 ALTER TABLE `lista` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,7 +55,7 @@ CREATE TABLE `listas_votacion` (
   KEY `id_lista` (`id_lista`),
   CONSTRAINT `listas_votacion_ibfk_1` FOREIGN KEY (`id_votacion`) REFERENCES `votacion` (`id`),
   CONSTRAINT `listas_votacion_ibfk_2` FOREIGN KEY (`id_lista`) REFERENCES `lista` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,7 +64,7 @@ CREATE TABLE `listas_votacion` (
 
 LOCK TABLES `listas_votacion` WRITE;
 /*!40000 ALTER TABLE `listas_votacion` DISABLE KEYS */;
-INSERT INTO `listas_votacion` VALUES (1,1,1),(2,1,2),(3,2,3);
+INSERT INTO `listas_votacion` VALUES (1,1,1),(2,1,2),(3,2,3),(30,20,1),(31,20,7),(32,21,2);
 /*!40000 ALTER TABLE `listas_votacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +113,7 @@ CREATE TABLE `representante` (
   PRIMARY KEY (`id`),
   KEY `id_lista` (`id_lista`),
   CONSTRAINT `representante_ibfk_1` FOREIGN KEY (`id_lista`) REFERENCES `lista` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +122,7 @@ CREATE TABLE `representante` (
 
 LOCK TABLES `representante` WRITE;
 /*!40000 ALTER TABLE `representante` DISABLE KEYS */;
-INSERT INTO `representante` VALUES (1,1,'carlos','gomez'),(2,1,'carlos','gomez'),(3,1,'mamita','asdasd');
+INSERT INTO `representante` VALUES (1,1,'carlos','gomez'),(2,1,'carlos','gomez'),(3,1,'mamita','asdasd'),(4,6,'Raul','Alfonsin'),(5,6,'Juan','Gimenez'),(6,7,'lisandro','lobosco'),(7,7,'Juan','Perez');
 /*!40000 ALTER TABLE `representante` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -163,7 +163,7 @@ CREATE TABLE `votacion` (
   `descripcion` varchar(30) DEFAULT NULL,
   `activa` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,7 +172,7 @@ CREATE TABLE `votacion` (
 
 LOCK TABLES `votacion` WRITE;
 /*!40000 ALTER TABLE `votacion` DISABLE KEYS */;
-INSERT INTO `votacion` VALUES (1,2023,'diputados',0),(2,2024,'diputados',0);
+INSERT INTO `votacion` VALUES (1,2023,'diputados',0),(2,2024,'diputados',0),(6,2025,'Diputados',0),(20,2025,'presidente',0),(21,2026,'Vice Presidente',0);
 /*!40000 ALTER TABLE `votacion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -375,4 +375,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-20  9:24:08
+-- Dump completed on 2023-09-23 16:31:04

@@ -4,6 +4,8 @@
  */
 package c.tech.pkg3.votacion.vistas;
 
+import c.tech.pkg3.votacion.dao.DaoVotacion;
+
 /**
  *
  * @author ET36
@@ -52,6 +54,11 @@ public class login extends javax.swing.JFrame {
         etiquetalogin.setText("Log In");
 
         BotonIngresar.setText("Ingresar");
+        BotonIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonIngresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -113,6 +120,15 @@ public class login extends javax.swing.JFrame {
     private void campodniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campodniActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campodniActionPerformed
+
+    private void BotonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIngresarActionPerformed
+       
+        
+        DaoVotacion dao = new DaoVotacion();
+        
+        
+        
+    }//GEN-LAST:event_BotonIngresarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -23,7 +23,7 @@ public class DaoPersona {
         try {
             String nom = "", apellido = "", contraseña = "";
             int telefono = 0;
-            String rol = "";
+            Rol rol = null;
             Connection con = SqlConnection.getConnection();
             PreparedStatement ps = con.prepareStatement("Select * from persona where dni =?");
             ps.setInt(1, dni);
@@ -33,14 +33,15 @@ public class DaoPersona {
                 apellido = rs.getString(3);
                 telefono = rs.getInt(4);
                 contraseña = rs.getString(5);
-                rol = rs.getString(5);
+                if (rs.getInt(6) == 1) {
+                    rol = Rol.ADMIN;
+                }else rol = Rol.PERSONA;
             }
             rs.close();
             ps.close();
-            if (nom.equals("")) {
-                return null;
-            }
-            return new Persona(dni, nom, apellido, telefono, contraseña, Rol.valueOf(rol));
+
+                return new Persona(dni, nom, apellido, telefono, contraseña,rol);
+            
         } catch (SQLException ex) {
             Logger.getLogger(DaoPersona.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,8 +52,11 @@ public class DaoPersona {
         Connection con = SqlConnection.getConnection();
         PreparedStatement ps = null;
         int rol = 0;
-        if (persona.getRol().equals(Rol.ADMIN)) rol = 1;
-        else rol = 2;
+        if (persona.getRol().equals(Rol.ADMIN)) {
+            rol = 1;
+        } else {
+            rol = 2;
+        }
         try {
             ps = con.prepareStatement("insert into persona (dni,nombre,apellido,telefono,contraseña,rol) VALUES(?,?,?,?,?,?)");
 

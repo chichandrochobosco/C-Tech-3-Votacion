@@ -6,7 +6,11 @@ package c.tech.pkg3.votacion;
 
 import Encriptador.EncriptadorContraseña;
 import c.tech.pkg3.votacion.dao.DaoVotacion;
+import c.tech.pkg3.votacion.vistas.AñadirVotacion;
+import c.tech.pkg3.votacion.vistas.añadirLista;
 import c.tech.pkg3.votacion.vistas.añadirUsuario;
+import c.tech.pkg3.votacion.vistas.login;
+import c.tech.pkg3.votacion.vistas.verEstadisticas;
 
 /**
  *
@@ -16,12 +20,11 @@ public class CTech3Votacion {
 
     public static void main(String[] args) {
         
-        añadirUsuario a = new añadirUsuario();
-        a.setVisible(true);
-        DaoVotacion daoVotacion = new DaoVotacion();
-        for (Votacion v : daoVotacion.obtenerVotaciones()){
-            System.out.println(v.toString());
-        }
+        AñadirVotacion lo = new AñadirVotacion();
+        lo.setVisible(true);
+        
+        
+    
 
     }
     

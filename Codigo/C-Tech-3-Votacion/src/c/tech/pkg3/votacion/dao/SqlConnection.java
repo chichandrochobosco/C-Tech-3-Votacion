@@ -19,7 +19,7 @@ public class SqlConnection {
     {
         String url = "jdbc:mysql://localhost:3306/db_votacion?serverTimezone=UTC";
         String user = "root";
-        String pass = "";
+        String pass = "12345";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             

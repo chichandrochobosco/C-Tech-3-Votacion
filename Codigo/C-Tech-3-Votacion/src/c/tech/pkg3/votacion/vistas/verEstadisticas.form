@@ -72,15 +72,13 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="estadisticasvotacioninterna">
               <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="4" rowCount="4">
-                    <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                    <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                    <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                    <Column editable="true" title="Title 4" type="java.lang.Object"/>
-                  </Table>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="modelo" type="code"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="DefaultTableModel modelo =  new DefaultTableModel(){&#xa;@Override&#xa;    public boolean isCellEditable(int row, int column) {&#xa;       //all cells false&#xa;      return column == 4;&#xa;    }&#xa;};&#xa;&#xa;        String columnas[] = {&quot;Partido&quot;,&quot;A&#xf1;o&quot;,&quot;Votacion&quot;,&quot;Cant Votos&quot;};&#xa;        modelo.setColumnIdentifiers(columnas);"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

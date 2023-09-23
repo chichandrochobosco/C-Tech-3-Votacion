@@ -30,8 +30,7 @@ public class Persona {
         return rol;
     }
 
-    
-    
+   
     public int getDni() {
         return dni;
     }

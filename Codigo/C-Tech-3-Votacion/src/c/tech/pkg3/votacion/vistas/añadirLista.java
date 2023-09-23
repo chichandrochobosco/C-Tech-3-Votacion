@@ -4,17 +4,22 @@
  */
 package c.tech.pkg3.votacion.vistas;
 
+import c.tech.pkg3.votacion.Lista;
+import c.tech.pkg3.votacion.dao.DaoVotacion;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ET36
  */
 public class añadirLista extends javax.swing.JFrame {
 
-    /**
-     * Creates new form añadirLista
-     */
+    
     public añadirLista() {
         initComponents();
+        camponombrerepresentante.setEnabled(false);
+        campoapellidorepresentante.setEnabled(false);
+        botoncargarrepresentante.setEnabled(false);
     }
 
     /**
@@ -39,9 +44,18 @@ public class añadirLista extends javax.swing.JFrame {
 
         etiquetaañadirlista.setText("Añadir lista");
 
-        camponombrelista.setText("Ingrese nombre de la lista");
+        camponombrelista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                camponombrelistaActionPerformed(evt);
+            }
+        });
 
         botoncargarnombrelista.setText("Cargar nombre");
+        botoncargarnombrelista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botoncargarnombrelistaActionPerformed(evt);
+            }
+        });
 
         etiquetaingresarrepresentantes.setText("Ingresar representante");
 
@@ -50,6 +64,11 @@ public class añadirLista extends javax.swing.JFrame {
         campoapellidorepresentante.setText("Ingrese apellido");
 
         botoncargarrepresentante.setText("Cargar representante");
+        botoncargarrepresentante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botoncargarrepresentanteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,6 +130,46 @@ public class añadirLista extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botoncargarnombrelistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncargarnombrelistaActionPerformed
+        String campoNombre = camponombrelista.getText();
+        if (campoNombre.equals("")){
+            JOptionPane.showMessageDialog(null, "ingrese un nombre");
+            return;
+        }
+        DaoVotacion dao = new DaoVotacion();
+        Lista lista = dao.obtenerListaPorNombre(campoNombre);
+        if(lista != null ){
+            JOptionPane.showMessageDialog(null, "La Lista Ya Existe");
+            return;
+        }
+        
+        dao.añadirLista(campoNombre);
+        JOptionPane.showMessageDialog(null, "Lista Cargada Correctamente");
+        
+        camponombrelista.setEnabled(false);
+        
+        camponombrerepresentante.setEnabled(true);
+        campoapellidorepresentante.setEnabled(true);
+        botoncargarrepresentante.setEnabled(true);
+        
+    }//GEN-LAST:event_botoncargarnombrelistaActionPerformed
+
+    private void camponombrelistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_camponombrelistaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_camponombrelistaActionPerformed
+
+    private void botoncargarrepresentanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncargarrepresentanteActionPerformed
+        String nombre = camponombrerepresentante.getText();
+        String apellido = campoapellidorepresentante.getText();
+        if (nombre.equals("") || apellido.equals("")){
+            JOptionPane.showMessageDialog(null, "ingrese todos los datos");
+            return;
+        }
+        DaoVotacion dao = new DaoVotacion();
+        dao.añadirRepresentante(camponombrelista.getText(), nombre, apellido);
+        JOptionPane.showMessageDialog(null,"Representante ingresado Correctamente");
+    }//GEN-LAST:event_botoncargarrepresentanteActionPerformed
 
     /**
      * @param args the command line arguments

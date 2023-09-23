@@ -101,14 +101,17 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="camponombrelista">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Ingrese nombre de la lista"/>
-          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="camponombrelistaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botoncargarnombrelista">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cargar nombre"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botoncargarnombrelistaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="etiquetaingresarrepresentantes">
           <Properties>
@@ -129,6 +132,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Cargar representante"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botoncargarrepresentanteActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
