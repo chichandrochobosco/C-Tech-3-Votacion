@@ -20,7 +20,7 @@ public class CTech3Votacion {
 
     public static void main(String[] args) {
         
-        AñadirVotacion lo = new AñadirVotacion();
+        añadirUsuario lo = new añadirUsuario();
         lo.setVisible(true);
         
         

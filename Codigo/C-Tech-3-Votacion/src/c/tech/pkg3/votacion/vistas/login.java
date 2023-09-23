@@ -4,7 +4,11 @@
  */
 package c.tech.pkg3.votacion.vistas;
 
+import c.tech.pkg3.votacion.Persona;
+import c.tech.pkg3.votacion.Rol;
+import c.tech.pkg3.votacion.dao.DaoPersona;
 import c.tech.pkg3.votacion.dao.DaoVotacion;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -122,10 +126,26 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_campodniActionPerformed
 
     private void BotonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIngresarActionPerformed
-       
+        int dni = Integer.parseInt(campodni.getText());
+        String contraseña = campocontraseña.getText();
         
-        DaoVotacion dao = new DaoVotacion();
-        
+        DaoPersona dao = new DaoPersona();
+        Persona persona = dao.obtenerPersona(dni);
+        if(persona==null){
+            JOptionPane.showMessageDialog(null, "La persona no existe :(");
+            return;
+        }
+        if(contraseña.equals(persona.getContraseña())){
+            if(persona.getRol().equals(Rol.ADMIN)){
+               inicioAdmin inicio = new inicioAdmin();
+               inicio.setVisible(true);
+            }else{
+               generarVoto inicio = new generarVoto();
+               inicio.setVisible(true);
+            }
+            return;
+        }
+        JOptionPane.showMessageDialog(null, "Contraseña incorrecta");
         
         
     }//GEN-LAST:event_BotonIngresarActionPerformed
