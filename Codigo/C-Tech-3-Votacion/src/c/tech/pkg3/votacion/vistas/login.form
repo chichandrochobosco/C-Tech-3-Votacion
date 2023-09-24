@@ -94,9 +94,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="campodni">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="ingrese dni"/>
-          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="campodniActionPerformed"/>
           </Events>
@@ -107,9 +104,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="campocontrase&#xf1;a">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="ingrese contrase&#xf1;a"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="etiquetalogin">
           <Properties>

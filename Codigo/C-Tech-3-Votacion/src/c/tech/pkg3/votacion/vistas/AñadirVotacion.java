@@ -52,7 +52,7 @@ private String nombreVotacion = "";
         jLabel2 = new javax.swing.JLabel();
         campoAñoVotacion = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         etiquetaañadirvotacion.setText("Añadir votacion");
 

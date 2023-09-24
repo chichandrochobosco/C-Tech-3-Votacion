@@ -43,16 +43,28 @@
                   <Component id="etiquetainicio" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="269" max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="listavotacion" min="-2" pref="120" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="botonmostrarvotacion" max="32767" attributes="0"/>
-                          <Component id="etiquetamostrarvotacion" alignment="0" min="-2" pref="107" max="-2" attributes="0"/>
-                          <Component id="botonvotacion" alignment="0" max="32767" attributes="0"/>
-                          <Component id="botonlista" alignment="0" max="32767" attributes="0"/>
-                          <Component id="botonusuario" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="botonVerEstadisticas" pref="120" max="32767" attributes="0"/>
+                              <Component id="botonvotacion" alignment="0" max="32767" attributes="0"/>
+                              <Component id="botonlista" alignment="0" max="32767" attributes="0"/>
+                              <Component id="botonusuario" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="etiquetamostrarvotacion" min="-2" pref="107" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="botonmostrarvotacion" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="botonDesactivarVotacion" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="listavotacion" alignment="0" min="-2" pref="152" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="233" max="32767" attributes="0"/>
@@ -71,12 +83,17 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="botonvotacion" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="botonVerEstadisticas" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Component id="etiquetamostrarvotacion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="listavotacion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                  <Component id="botonmostrarvotacion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="68" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="botonmostrarvotacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botonDesactivarVotacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="52" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -99,6 +116,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Crear lista"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonlistaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="botonvotacion">
           <Properties>
@@ -110,13 +130,8 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="listavotacion">
           <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.DefaultComboBoxModel&lt;&gt;(new String[] {})" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -128,13 +143,32 @@
         </Component>
         <Component class="javax.swing.JLabel" name="etiquetamostrarvotacion">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mostrar votacion"/>
+            <Property name="text" type="java.lang.String" value="Votaciones"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="botonmostrarvotacion">
           <Properties>
             <Property name="text" type="java.lang.String" value="Mostrar votacion"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonmostrarvotacionActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonVerEstadisticas">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ver Estadisticas"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonVerEstadisticasActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botonDesactivarVotacion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Desactivar Votacion"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonDesactivarVotacionActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -40,7 +40,7 @@ public class añadirLista extends javax.swing.JFrame {
         campoapellidorepresentante = new javax.swing.JTextField();
         botoncargarrepresentante = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         etiquetaañadirlista.setText("Añadir lista");
 

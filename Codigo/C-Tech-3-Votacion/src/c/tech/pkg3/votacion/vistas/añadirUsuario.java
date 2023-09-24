@@ -50,7 +50,7 @@ public class añadirUsuario extends javax.swing.JFrame {
         RolComboBox = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         etiquetaañadirusuario.setText("Añadir usuario");
 

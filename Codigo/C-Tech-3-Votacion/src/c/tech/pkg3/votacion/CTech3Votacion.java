@@ -4,13 +4,8 @@
  */
 package c.tech.pkg3.votacion;
 
-import Encriptador.EncriptadorContraseña;
-import c.tech.pkg3.votacion.dao.DaoVotacion;
-import c.tech.pkg3.votacion.vistas.AñadirVotacion;
-import c.tech.pkg3.votacion.vistas.añadirLista;
-import c.tech.pkg3.votacion.vistas.añadirUsuario;
+
 import c.tech.pkg3.votacion.vistas.login;
-import c.tech.pkg3.votacion.vistas.verEstadisticas;
 
 /**
  *
@@ -20,8 +15,9 @@ public class CTech3Votacion {
 
     public static void main(String[] args) {
         
-        añadirUsuario lo = new añadirUsuario();
+        login lo = new login();
         lo.setVisible(true);
+        
         
         
     

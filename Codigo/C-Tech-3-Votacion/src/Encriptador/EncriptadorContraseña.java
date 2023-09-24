@@ -4,13 +4,17 @@
  */
 package Encriptador;
 
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 /**
  *
@@ -18,20 +22,37 @@ import java.util.logging.Logger;
  */
 public class EncriptadorContraseña {
 
-    public String encriptarContraseña(String contraseña)  {
-        byte[] hashedPassword = null;
-        try {
-            SecureRandom random = new SecureRandom();
-            byte[] salt = new byte[16];
-            random.nextBytes(salt);
-            MessageDigest md = MessageDigest.getInstance("SHA-512");
-            md.update(salt);
-            
-            hashedPassword = md.digest(contraseña.getBytes(StandardCharsets.UTF_8));
-            System.out.println(hashedPassword);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(EncriptadorContraseña.class.getName()).log(Level.SEVERE, null, ex);
-        }
-      return hashedPassword.toString();
+   private String claveSecreta = "jhJHISioajio-]dsdsññ{+*dsaszx";
+      private  SecretKeySpec secretKey;
+
+   
+    private void setKey() {
+    MessageDigest sha = null;
+    try {
+      byte[] key = claveSecreta.getBytes("UTF-8");
+      sha = MessageDigest.getInstance("SHA-1");
+      key = sha.digest(key);
+      key = Arrays.copyOf(key, 16);
+      secretKey = new SecretKeySpec(key, "AES");
+    } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+      e.printStackTrace();
     }
+  }
+   
+   
+    public  String encriptarContraseña(final String contraseña) {
+    try {
+      setKey();
+      Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+      cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+      return Base64.getEncoder()
+        .encodeToString(cipher.doFinal(contraseña.getBytes("UTF-8")));
+    } catch (Exception e) {
+      System.out.println("Error  " + e.toString());
+    }
+    return null;
+  }
+    
+    
+    
 }

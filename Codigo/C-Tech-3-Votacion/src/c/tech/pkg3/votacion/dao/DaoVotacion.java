@@ -151,18 +151,15 @@ public class DaoVotacion {
             throw new RuntimeException(e);
         }
     }
-    
-    
-    
-    
-    public void añadirVotacion(int año, String descripcion){
+
+    public void añadirVotacion(int año, String descripcion) {
         Connection con = SqlConnection.getConnection();
         String query = "insert into votacion (ano,descripcion,activa) values (?,?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, año);
             ps.setString(2, descripcion);
-            ps.setInt(3,0);
+            ps.setInt(3, 0);
 
             ps.executeUpdate();
             ps.close();
@@ -170,15 +167,14 @@ public class DaoVotacion {
             throw new RuntimeException(e);
         }
     }
-    
-    
-    public void añadirListasAVotacion(String nombreVotacion,int idLista){
-          Connection con = SqlConnection.getConnection();
+
+    public void añadirListasAVotacion(String nombreVotacion, int idLista) {
+        Connection con = SqlConnection.getConnection();
         String query = "insert into listas_votacion (id_votacion,id_lista) values (?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1, obtenerIdVotacionPorNombre(nombreVotacion));
-            ps.setInt(2,idLista);
+            ps.setInt(2, idLista);
 
             ps.executeUpdate();
             ps.close();
@@ -186,9 +182,8 @@ public class DaoVotacion {
             throw new RuntimeException(e);
         }
     }
-    
-    
-    public List<Estadisticas> obtenerEstadisticas(){
+
+    public List<Estadisticas> obtenerEstadisticas() {
         List<Estadisticas> estadisticas = new ArrayList<>();
         Connection con = SqlConnection.getConnection();
         ResultSet rs = null;
@@ -199,7 +194,7 @@ public class DaoVotacion {
             rs = cs.getResultSet();
 
             while (rs.next()) {
-                estadisticas.add(new Estadisticas(rs.getString("nombre"), rs.getString("descripcion"), rs.getInt("votos"),rs.getInt("ano")));
+                estadisticas.add(new Estadisticas(rs.getString("nombre"), rs.getString("descripcion"), rs.getInt("votos"), rs.getInt("ano")));
             }
             rs.close();
 
@@ -209,9 +204,8 @@ public class DaoVotacion {
             throw new RuntimeException(e);
         }
     }
-    
-    
-       private int obtenerIdVotacionPorNombre(String nombre) {
+
+    private int obtenerIdVotacionPorNombre(String nombre) {
         ResultSet rs = null;
         Connection con = SqlConnection.getConnection();
         String query = "SELECT id from votacion WHERE descripcion=?";
@@ -221,17 +215,53 @@ public class DaoVotacion {
             ps.setString(1, nombre);
             rs = ps.executeQuery();
             while (rs.next()) {
-                 id = rs.getInt(1);
+                id = rs.getInt(1);
             }
             rs.close();
-               return id;
+            return id;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-       }
-    
-    public List<Lista> obtenerListas(){
+    }
+
+    public List<Estadisticas> obtenerEstadisticasIdVotacion(int idVotacion) {
+        List<Estadisticas> estadisticas = new ArrayList<>();
+        Connection con = SqlConnection.getConnection();
+        ResultSet rs = null;
+
+        try {
+            CallableStatement cs = con.prepareCall("{CALL obtenerEstadisticaIdVotacion(?)}");
+            cs.setInt(1, idVotacion);
+            cs.execute();
+            rs = cs.getResultSet();
+
+            while (rs.next()) {
+                estadisticas.add(new Estadisticas(rs.getString("nombre"), rs.getString("descripcion"), rs.getInt("votos"), rs.getInt("ano")));
+            }
+            rs.close();
+
+            return estadisticas;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void desactivarVotacion(int idVotacion) {
+        Connection con = SqlConnection.getConnection();
+        String query = "UPDATE votacion set activa = 1 where id = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1, idVotacion);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public List<Lista> obtenerListas() {
         List<Lista> listas = new ArrayList<>();
         Connection con = SqlConnection.getConnection();
         ResultSet rs = null;
@@ -242,10 +272,52 @@ public class DaoVotacion {
             rs = cs.getResultSet();
 
             while (rs.next()) {
-               listas.add(new Lista(rs.getString(2),rs.getInt("id")));
+                listas.add(new Lista(rs.getString(2), rs.getInt("id")));
             }
             rs.close();
             return listas;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean personaVoto(int dni, int idVotacion) {
+        ResultSet rs = null;
+        Connection con = SqlConnection.getConnection();
+
+        String query2 = "SELECT id from voto_persona WHERE id_persona=? and id_votacion = ?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(query2);
+            ps.setInt(1, dni);
+            ps.setInt(2, idVotacion);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+            rs.close();
+            return false;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void votar(int dni, int idVotacion, int idLista) {
+        Connection con = SqlConnection.getConnection();
+        String query1 = "insert into voto_persona(id_persona,id_votacion) VALUES (?,?)";
+        String query2 = "insert into voto(id_votacion,id_lista) VALUES (?,?)";
+        try {
+            PreparedStatement ps = con.prepareStatement(query1);
+            ps.setInt(1, dni);
+            ps.setInt(2, idVotacion);
+            ps.executeUpdate();
+
+            ps = con.prepareStatement(query2);
+            ps.setInt(1, idVotacion);
+            ps.setInt(2, idLista);
+            ps.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

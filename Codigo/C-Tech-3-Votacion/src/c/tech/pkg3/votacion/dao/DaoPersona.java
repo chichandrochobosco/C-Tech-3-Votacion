@@ -36,11 +36,12 @@ public class DaoPersona {
                 if (rs.getInt(6) == 1) {
                     rol = Rol.ADMIN;
                 }else rol = Rol.PERSONA;
+                return new Persona(dni, nom, apellido, telefono, contraseña,rol);
             }
             rs.close();
             ps.close();
 
-                return new Persona(dni, nom, apellido, telefono, contraseña,rol);
+            return null;
             
         } catch (SQLException ex) {
             Logger.getLogger(DaoPersona.class.getName()).log(Level.SEVERE, null, ex);

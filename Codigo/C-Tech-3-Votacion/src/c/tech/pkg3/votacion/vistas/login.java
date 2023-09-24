@@ -4,6 +4,7 @@
  */
 package c.tech.pkg3.votacion.vistas;
 
+import Encriptador.EncriptadorContraseña;
 import c.tech.pkg3.votacion.Persona;
 import c.tech.pkg3.votacion.Rol;
 import c.tech.pkg3.votacion.dao.DaoPersona;
@@ -44,7 +45,6 @@ public class login extends javax.swing.JFrame {
 
         etiquetadni.setText("DNI");
 
-        campodni.setText("ingrese dni");
         campodni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campodniActionPerformed(evt);
@@ -52,8 +52,6 @@ public class login extends javax.swing.JFrame {
         });
 
         etiquetacontraseña.setText("CONTRASEÑA");
-
-        campocontraseña.setText("ingrese contraseña");
 
         etiquetalogin.setText("Log In");
 
@@ -135,12 +133,15 @@ public class login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "La persona no existe :(");
             return;
         }
-        if(contraseña.equals(persona.getContraseña())){
+        Encriptador.EncriptadorContraseña e = new EncriptadorContraseña();
+                
+        String contraseñaEncriptada = e.encriptarContraseña(contraseña);
+        if(contraseñaEncriptada.equals(persona.getContraseña())){
             if(persona.getRol().equals(Rol.ADMIN)){
                inicioAdmin inicio = new inicioAdmin();
                inicio.setVisible(true);
             }else{
-               generarVoto inicio = new generarVoto();
+               generarVoto inicio = new generarVoto(persona);
                inicio.setVisible(true);
             }
             return;
